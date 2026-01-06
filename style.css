@@ -91,10 +91,39 @@ button {
   transition: width 0.3s;
 }
 
+/* ===========================
+   ESTILOS PARA ANÚNCIOS
+   (CLICKADILLA)
+   =========================== */
+
 .ad {
   text-align: center;
   padding: 10px;
+  margin: 15px auto;
   background: rgba(0,0,0,0.3);
+  border-radius: 12px;
+}
+
+/* Banner do topo */
+.ad-top {
+  margin-top: 10px;
+}
+
+/* Banner do meio / vídeo */
+.ad-video {
+  margin-top: 20px;
+}
+
+/* Banner do rodapé */
+.ad-bottom {
+  margin-bottom: 20px;
+}
+
+/* Responsivo para celular */
+@media (max-width: 600px) {
+  .ad {
+    padding: 5px;
+  }
 }
 
 @keyframes fadeSlide {
