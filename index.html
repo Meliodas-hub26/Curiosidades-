@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Curiosidades sobre a Saúde</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ad ad-top">Espaço para anúncio</div>
+
+  <button id="themeToggle">🌙</button>
+
+  <main class="container">
+    <h1>Curiosidades sobre a Saúde</h1>
+
+    <p id="introText">
+      Descubra curiosidades rápidas que podem melhorar a sua saúde.
+    </p>
+
+    <button id="startBtn">COMEÇAR</button>
+
+    <div id="progress" class="hidden">
+      <span id="progressText">0 / 50</span>
+      <div class="bar">
+        <div class="bar-fill" id="barFill"></div>
+      </div>
+    </div>
+
+    <div id="card" class="card hidden">
+      <p id="curiosidade"></p>
+
+      <div class="actions">
+        <button id="likeBtn">❤️ <span id="likeCount">0</span></button>
+        <button id="favBtn">⭐ Favoritar</button>
+      </div>
+
+      <button id="nextBtn">Próxima curiosidade</button>
+      <button id="shareBtn">Compartilhar no WhatsApp</button>
+    </div>
+
+    <p class="views">Visualizações: <span id="viewsCount">0</span></p>
+  </main>
+
+  <div class="ad ad-bottom">Espaço para anúncio</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
