@@ -1,0 +1,103 @@
+:root {
+  --bg: #0f2027;
+  --card: rgba(255,255,255,0.1);
+  --text: #ffffff;
+  --btn: #00c6ff;
+}
+
+body.light {
+  --bg: #f2f2f2;
+  --card: #ffffff;
+  --text: #000000;
+  --btn: #007bff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+#introText {
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 16px;
+  max-width: 500px;
+  margin: 20px auto;
+  animation: fadeSlide 0.4s;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background: var(--btn);
+  cursor: pointer;
+  margin: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+#themeToggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+#progress {
+  margin-top: 15px;
+}
+
+.bar {
+  background: rgba(255,255,255,0.2);
+  height: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--btn);
+  transition: width 0.3s;
+}
+
+.ad {
+  text-align: center;
+  padding: 10px;
+  background: rgba(0,0,0,0.3);
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
