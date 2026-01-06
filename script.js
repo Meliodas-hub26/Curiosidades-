@@ -81,6 +81,78 @@ if (localStorage.getItem("theme") === "light") {
 
 themeToggle.onclick = () => {
   document.body.classList.toggle("light");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
+};
+
+// Iniciar
+startBtn.onclick = () => {
+  startBtn.classList.add("hidden");
+  document.getElementById("introText").classList.add("hidden");
+  card.classList.remove("hidden");
+  progress.classList.remove("hidden");
+  mostrarCuriosidade();
+};
+
+function mostrarCuriosidade() {
+  if (index >= curiosidades.length) {
+    curiosidadeEl.textContent = "Você chegou ao final 🎉";
+    nextBtn.style.display = "none";
+    shareBtn.style.display = "none";
+    return;
+  }
+
+  const texto = curiosidades[index];
+  curiosidadeEl.textContent = texto;
+
+  likeCount.textContent = likes[texto] || 0;
+
+  progressText.textContent = `${index + 1} / ${curiosidades.length}`;
+  barFill.style.width = `${((index + 1) / curiosidades.length) * 100}%`;
+
+  index++;
+}
+
+nextBtn.onclick = mostrarCuriosidade;
+
+// Like
+likeBtn.onclick = () => {
+  const texto = curiosidadeEl.textContent;
+  likes[texto] = (likes[texto] || 0) + 1;
+  likeCount.textContent = likes[texto];
+  localStorage.setItem("likes", JSON.stringify(likes));
+};
+
+// Favoritos
+favBtn.onclick = () => {
+  const texto = curiosidadeEl.textContent;
+  if (!favorites.includes(texto)) {
+    favorites.push(texto);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    alert("Adicionado aos favoritos ⭐");
+  }
+};
+
+// Compartilhar no WhatsApp
+shareBtn.onclick = () => {
+  const texto = `${curiosidadeEl.textContent}\n\nVeja mais: ${location.href}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`);
+};const viewsCount = document.getElementById("viewsCount");
+
+let views = localStorage.getItem("views") || 0;
+views++;
+localStorage.setItem("views", views);
+viewsCount.textContent = views;
+
+// Tema
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light");
+}
+
+themeToggle.onclick = () => {
+  document.body.classList.toggle("light");
   localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
 };
 
