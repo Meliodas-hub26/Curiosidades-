@@ -4,19 +4,144 @@
   <meta charset="UTF-8">
   <title>Curiosidades sobre a Saúde</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-
-  <!-- CLICKADILLA - SCRIPT PRINCIPAL (OBRIGATÓRIO) -->
+  
   <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="410433"></script>
+
+  <style>
+    /* CSS UNIFICADO */
+    :root {
+      --bg: #0f2027;
+      --card: rgba(255,255,255,0.1);
+      --text: #ffffff;
+      --btn: #00c6ff;
+    }
+
+    body.light {
+      --bg: #f2f2f2;
+      --card: #ffffff;
+      --text: #000000;
+      --btn: #007bff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      flex: 1;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #introText {
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 16px;
+      max-width: 500px;
+      margin: 20px auto;
+      animation: fadeSlide 0.4s;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      background: var(--btn);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 8px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #themeToggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+    }
+
+    #progress {
+      margin: 15px auto;
+      max-width: 500px;
+    }
+
+    .bar {
+      background: rgba(255,255,255,0.2);
+      height: 8px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--btn);
+      transition: width 0.3s;
+    }
+
+    /* Estilização para os espaços de anúncios */
+    .ad {
+      text-align: center;
+      padding: 10px;
+      background: rgba(0,0,0,0.1);
+      min-height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .views {
+      margin-top: 20px;
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- WEB-PUSH / BANNER TOPO -->
   <div class="ad ad-top">
-    <div data-banner-id="1477081"></div>
+    <div data-banner-id="1477100"></div>
   </div>
 
-  <button id="themeToggle">🌙</button>
+  <button id="themeToggle">☀️</button>
 
   <main class="container">
     <h1>Curiosidades sobre a Saúde</h1>
@@ -43,11 +168,11 @@
       </div>
 
       <button id="nextBtn">Próxima curiosidade</button>
-      <button id="shareBtn">Compartilhar no WhatsApp</button>
+      <br>
+      <button id="shareBtn" style="background-color: #25D366;">Compartilhar no WhatsApp</button>
 
-      <!-- VIDEO ADS #1 -->
-      <div class="ad ad-video">
-        <div data-banner-id="1477082"></div>
+      <div class="ad ad-inner" style="margin-top: 20px;">
+        <div data-banner-id="1477100"></div>
       </div>
 
     </div>
@@ -55,11 +180,159 @@
     <p class="views">Visualizações: <span id="viewsCount">0</span></p>
   </main>
 
-  <!-- BANNER RODAPÉ -->
   <div class="ad ad-bottom">
-    <div data-banner-id="1477083"></div>
+    <div data-banner-id="1477100"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    /* JAVASCRIPT UNIFICADO */
+    const curiosidades = [
+      "Beber água regularmente melhora o funcionamento do cérebro.",
+      "Dormir bem ajuda a prevenir doenças cardíacas.",
+      "O riso fortalece o sistema imunológico.",
+      "A pele se renova completamente a cada 28 dias.",
+      "Respirar profundamente reduz o estresse.",
+      "Caminhar diariamente melhora a circulação.",
+      "O cérebro consome cerca de 20% da energia do corpo.",
+      "Dormir pouco afeta a memória.",
+      "Alongamentos evitam dores musculares.",
+      "O intestino influencia o humor.",
+      "Atividade física melhora a saúde mental.",
+      "O coração bate cerca de 100 mil vezes por dia.",
+      "Postura correta evita dores nas costas.",
+      "Excesso de açúcar prejudica o coração.",
+      "O sol ajuda na produção de vitamina D.",
+      "A hidratação melhora a concentração.",
+      "O riso libera endorfinas.",
+      "Dormir bem regula os hormônios.",
+      "Lavar as mãos previne infecções.",
+      "Respirar pelo nariz filtra o ar.",
+      "Exercícios reduzem ansiedade.",
+      "Sono regula o metabolismo.",
+      "Água ajuda na digestão.",
+      "O cérebro trabalha durante o sono.",
+      "Alongar melhora flexibilidade.",
+      "Atividade física aumenta energia.",
+      "Dormir cedo melhora a imunidade.",
+      "O estresse afeta o corpo todo.",
+      "Boa alimentação melhora o humor.",
+      "Exercícios melhoram o sono.",
+      "O corpo é 60% água.",
+      "A mente influencia o corpo.",
+      "Respiração lenta acalma.",
+      "Movimento previne doenças.",
+      "Sono melhora aprendizado.",
+      "Caminhar reduz pressão arterial.",
+      "Boa postura melhora respiração.",
+      "Atividade física aumenta longevidade.",
+      "Dormir bem melhora a pele.",
+      "Rir melhora o coração.",
+      "Exercício melhora memória.",
+      "Hidratação evita fadiga.",
+      "Sono reduz inflamações.",
+      "Movimento melhora circulação.",
+      "Exercício reduz estresse.",
+      "Respiração correta melhora foco.",
+      "Cuidar da mente é essencial.",
+      "Hábitos saudáveis salvam vidas.",
+      "Saúde começa com pequenas escolhas.",
+      "Constância é a chave da saúde."
+    ];
+
+    let index = 0;
+    let likes = JSON.parse(localStorage.getItem("likes")) || {};
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    const startBtn = document.getElementById("startBtn");
+    const card = document.getElementById("card");
+    const curiosidadeEl = document.getElementById("curiosidade");
+    const nextBtn = document.getElementById("nextBtn");
+    const shareBtn = document.getElementById("shareBtn");
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+    const favBtn = document.getElementById("favBtn");
+    const progress = document.getElementById("progress");
+    const progressText = document.getElementById("progressText");
+    const barFill = document.getElementById("barFill");
+    const themeToggle = document.getElementById("themeToggle");
+    const viewsCount = document.getElementById("viewsCount");
+
+    // Contador de Visualizações
+    let views = localStorage.getItem("views") || 0;
+    views++;
+    localStorage.setItem("views", views);
+    viewsCount.textContent = views;
+
+    // Tema
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light");
+      themeToggle.textContent = "🌙";
+    } else {
+      themeToggle.textContent = "☀️";
+    }
+
+    themeToggle.onclick = () => {
+      document.body.classList.toggle("light");
+      const isLight = document.body.classList.contains("light");
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+      themeToggle.textContent = isLight ? "🌙" : "☀️";
+    };
+
+    // Iniciar
+    startBtn.onclick = () => {
+      startBtn.classList.add("hidden");
+      document.getElementById("introText").classList.add("hidden");
+      card.classList.remove("hidden");
+      progress.classList.remove("hidden");
+      mostrarCuriosidade();
+    };
+
+    function mostrarCuriosidade() {
+      if (index >= curiosidades.length) {
+        curiosidadeEl.textContent = "Você chegou ao final 🎉";
+        nextBtn.style.display = "none";
+        shareBtn.style.display = "none";
+        return;
+      }
+
+      const texto = curiosidades[index];
+      curiosidadeEl.textContent = texto;
+
+      likeCount.textContent = likes[texto] || 0;
+
+      progressText.textContent = `${index + 1} / ${curiosidades.length}`;
+      barFill.style.width = `${((index + 1) / curiosidades.length) * 100}%`;
+
+      index++;
+    }
+
+    nextBtn.onclick = mostrarCuriosidade;
+
+    // Like
+    likeBtn.onclick = () => {
+      const texto = curiosidadeEl.textContent;
+      if(texto !== "Você chegou ao final 🎉") {
+          likes[texto] = (likes[texto] || 0) + 1;
+          likeCount.textContent = likes[texto];
+          localStorage.setItem("likes", JSON.stringify(likes));
+      }
+    };
+
+    // Favoritos
+    favBtn.onclick = () => {
+      const texto = curiosidadeEl.textContent;
+      if (texto !== "Você chegou ao final 🎉" && !favorites.includes(texto)) {
+        favorites.push(texto);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("Adicionado aos favoritos ⭐");
+      }
+    };
+
+    // Compartilhar
+    shareBtn.onclick = () => {
+      const texto = `${curiosidadeEl.textContent}\n\nVeja mais curiosidades aqui!`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`);
+    };
+  </script>
 </body>
 </html>
